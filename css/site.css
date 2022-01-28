@@ -1,5 +1,5 @@
 :root{
-    --primary-color: #1D5888;
+    --primary-color: #91d579;
     --secondary-color: #FF9A3B; /*#1CA8FC-blue*/
     --dark-color: #292929;
     --white-color: #dff3e4;
@@ -18,7 +18,8 @@
 
 
 body {
-    color:var(--dark-color);
+    color:var(--white-color);
+    background-color: #0E6EBE;
 }
 
 nav {
