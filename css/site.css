@@ -16,6 +16,13 @@
    
 }
 
+.odd{
+    font-weight: 100;
+}
+
+.even{
+    font-weight: bold;
+}
 
 body {
     color:var(--white-color);
@@ -74,6 +81,17 @@ code[class*="language-"], pre[class*="language-"] {
     white-space: pre-wrap;
     word-break: break-all;
     word-wrap: break-word;
+}
+
+.vl {
+    border-left: 1px solid;
+    height: 30px;
+    margin-right: 10px;
+    opacity: 0.4;
+}
+
+.logoFont {
+    font-family: 'Racing Sans One', cursive;
 }
 
 

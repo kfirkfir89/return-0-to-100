@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Kfir Avraham</title>
+    <title>Return: A Coding Project By Kfir Avraham</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,6 +12,11 @@
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
     <script src="https://kit.fontawesome.com/5db21ba9c6.js" crossorigin="anonymous"></script>
+
+    <!--  ===  Google Fonts for Racing Sans One  ===  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
 
     <link href="/css/site.css" rel="stylesheet">
     <link href="/css/prism.css" rel="stylesheet">
@@ -24,9 +29,9 @@
     <!-- ===  Nav Section  === -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="/img/favicon-32x32.png"
-                    class="d-inline-block align-text-top pe-2"></img>APP NAME</a>
-
+            <a class="navbar-brand logoFont" href="#"><img src="/img/favicon-32x32.png"
+                    class="d-inline-block align-text-top pe-2"></img>return</a>
+            <div class="vl d-none d-md-block"></div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -61,16 +66,102 @@
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8 order-last order-lg-first">
                     <pre class="line-numbers"><code class="language-javascript">
-                        function helloWorld(){
-                            alert("hello world");
-                        }
+                            //get the values from the Page
+                            //starts or controller function
+                            function getValues(){
+                                //get values from the page
+                                let startValue = document.getElementById("startValue").value;
+                                let endValue = document.getElementById("endValue").value;
+
+                                //we need validate our input
+                                //parse into Integers
+                                startValue = parseInt(startValue);
+                                endValue = parseInt(endValue);
+
+                                if (Number.isInteger(startValue) && Number.isInteger(endValue)){
+                                    //we call generateNumbers
+                                    let numbers = generateNumbers(startValue, endValue); 
+                                    //we call displayNumbers
+                                    displayNumbers(numbers);
+                                }
+                                else{
+                                    alert("You must enter integers");
+                                }
+                            }
+
+
+                            //generate numbers from startvalue to endvalue
+                            //logic function(s)
+                            function generateNumbers(sValue, eValue){
+
+                                let numbers = [];
+
+                                //we want to get all numbers from start to end
+                                for (let index = sValue; index <= eValue ; index++){
+
+                                    //this will execute in a loop until index = evalue
+                                    numbers.push(index);
+                                }
+
+                                return numbers;
+
+                            }
+
+
+                            //display the numbers and mark even numbers bold
+                            //display or view functions
+                            function displayNumbers(numbers){
+
+                                let templateRows = "";
+                                for (let index = 0; index < numbers.length; index++){
+
+                                    let className = "even";
+                                    let number = numbers[index];
+
+                                    if(number % 2 == 0){
+                                        className = "even";
+                                    }else{
+                                        className = "odd";
+                                    }
+                                    //This doesnt render correctly with Prisim see the source
+                                    templateRows += `<tr><td class="${className}">${number}</td><tr>`;
+                                }
+
+                                document.getElementById("results").innerHTML = templateRows;
+                            }
                         </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
                     <p>The Code is structed in one function</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+
+                    <h5>getValues</h5>
+                    <p>getValues accept(gets) the use input from the page.
+                         it utilizes <strong>getElementById</strong> to pull the values from the page.
+                         it passes those values to the <strong>generateNumbers</strong>function.
+                         The function <strong>generateNumbers</strong> returns an array of values and passes that array to the <strong>displayNumbers</strong> function.
+                        </p>
+
+                    <h5>generateNumbers</h5>
+                    <p>generateNumbers takes in two parameters startValue and endValue.
+                        We create variable (numbers) that holds an array.
+                        A for loop is used to generate all of the numbers between <strong>startValue</strong> and <strong>endValue</strong>.
+                        </p>
+                        
+                    <h5>displayNumbers</h5>
+                    <p>displayNumbers takes in one parameter numbers.
+                        The variable numbers is an array the holds values between <strong>startValue</strong> and <strong>endValue</strong>.
+                        We create a variable (className) that holds the name of a CSS class that we will use to bold the numbers.
+                        We create a variable <strong>templateRow</strong> that will hold the html we will write to the page.
+                        </p>
+                    <p>A for loop is used to check all the numbers to see if they are even or odd.
+                        The remainder operator(%) is used to see if the number is divisable by two.
+                        if returns zero the it is even.
+                        if not (else) its odd.
+                        The correct className is injected into the html row for display.
+                        Each interation of the loop adds to <strong>templateRow</strong> variable.
+                        At the end of the loop the resulting HTML rows are written to the page.
+                        </p>
                 </div>
             </div>
         </div>
